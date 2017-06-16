@@ -33,13 +33,26 @@ or soda and milk are never bought together
 * A=>B [s,c]
 
 s or the support is the frequency of the rule appearing in the transactions. That is we can find A and B together x percentage of times. 
-It is basically P(A,B)
+It is basically P(A U B)
 
 c or confidence is the conditional probablity thet if A is present what is the probability that b is also present
-P(B|A) which can also be written in terms of support as sup(A,B)/sup(A)
+P(B|A) which can also be written in terms of support as sup(A,B)/sup(A) = P(AUB)/P(A)
+
+Also A and B are the itemsets with no common items
+so basicaly A={orange juice, chips}
+B={soda, beer}
+AUB= {orange juice, chips,soda, beer}
+
+* Support is an important measure because a rule that has very low support may occur simply by chance
+
+* A low support rule is also likely to be uninteresting from a business perspective because it may not be profitable to promote items that customers seldom buy together
 
 
-* We can set up the minimum limit for the support and confidence for them to be considered as frequent
+
+* We can set up the minimum limit for the support and confidence for them to be considered as frequent. Formally we can say:
+Given a set of transactions T, find all the rules having **support ≥ minsup and confidence ≥ minconf**, where minsup and minconf are the corresponding support and confidence thresholds.
+
+
 
 * the association rules can be used in other domains as well 
 1. In case of Retail we consider Baskets as transactions and items as the items in the transactions
@@ -54,6 +67,10 @@ P(B|A) which can also be written in terms of support as sup(A,B)/sup(A)
 
 
 
+In association analysis, a collection of zero or more items is termed an **itemset**
+If an itemset contains k items, it is called a k-itemset. For instance, {Beer, Diapers, Milk} is an example of a 3-itemset.
+
+
 ###Aprioiri Algo
 
 Any subset of a frequent itemset must be frequent
@@ -65,9 +82,17 @@ conversly if an itemset is infrequent then all the superset are also infrequent
 so {ABCDE} is infrequent so {A,B,C,D} is also infrequent
 
 
-
-<TO BE FILLED>
-
+* A very good link for learning Apriori in R https://blog.exploratory.io/introduction-to-association-rules-market-basket-analysis-in-r-7a0dd900a3e0
 
 
-Ap
+
+TO BE FILLED
+
+
+
+### Objective measures of rule interest
+1. Support P(A,B)
+2. Confidence or strength  P(B|A)
+3. Lift or Interest or Correlation
+4. Conviction
+5. Leverage or Piatestsky-Shapiro
