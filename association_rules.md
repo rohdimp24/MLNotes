@@ -13,7 +13,7 @@ http://paginas.fe.up.pt/~ec/files_1112/week_04_Association.pdf
 
 * mba help in understandign the bundling strategies
 
-###Association Rule Mining
+### Association Rule Mining
 
 * Finding frequent patterns, associations, correlations, or causal structures among sets of items in transaction databases
 
@@ -76,7 +76,7 @@ In association analysis, a collection of zero or more items is termed an **items
 If an itemset contains k items, it is called a k-itemset. For instance, {Beer, Diapers, Milk} is an example of a 3-itemset.
 
 
-###Aprioiri Algo
+### Aprioiri Algo
 
 Any subset of a frequent itemset must be frequent
 
