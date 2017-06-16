@@ -132,6 +132,9 @@ Antecendent => consequent : this is the structure of the rule
 if {bcd} −→ {a} is low then
 All the rules containing item a in its consequent, including {cd} −→ {ab}, {bd} −→ {ac}, {bc} −→ {ad}, and {d} −→ {abc} can be discarded.
 
+* Confidence is non‐increasing as number of items in rule consequent increases
+ 
+c(ABC --> D) >= c(AB --> CD) >= c(A --> BCD)
 
 
 
@@ -150,7 +153,11 @@ TO BE FILLED
 
 
 A pattern is considered subjectively uninteresting unless it reveals unexpected information about the data or provides useful knowledge that can lead to profitable actions.
+
 For example, the rule {Butter} −→ {Bread} may not be interesting, despite having high support and confidence values, because the relationship represented by the rule may seem rather obvious. 
+
 On the other hand, the rule {Diapers} −→ {Beer} is interesting because the relationship is quite unexpected and may suggest a new cross-selling opportunity for retailers
 
+
+An objective measure is a data-driven approach for evaluating the quality of association patterns. It is domain-independent and requires minimal in- put from the users, other than to specify a threshold for filtering low-quality patterns
 
