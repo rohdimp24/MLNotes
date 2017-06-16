@@ -105,3 +105,6 @@ in case of multiple regression the response variable (Y) is a single variable wh
 In case of multivariate the response varaibles can also be many  
 
 * I think the main aim of the model is to account for maximum variance in Y. That means through the model you should be able to cover all the possible values of Y in the data. The less the coverage more will be the error. Th epredicted values will have different range while the true values will have some other range
+
+
+* ?how the hatvalues() works?

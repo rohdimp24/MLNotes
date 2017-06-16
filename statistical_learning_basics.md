@@ -52,3 +52,25 @@ The MSE will be less for the training data in case of the flexible model (spline
 * The **degrees of freedom** is a quantity that summarizes the flexibility of a curve
 
 
+* we generally want methods that have low variance and low bias
+ 
+
+* What do we mean by the variance and bias of a statistical learning method?
+**Variance** refers to the amount by which fˆ would change if we estimated it using a different training data set. 
+Since the training data are used to fit the statistical learning method, different training data sets
+will result in a different f. But ideally the estimate for f should not vary too much between training sets. However, if a method has high variance 
+then small changes in the training data can result in large changes in f.
+_In general the more flexible methods have high variance_
+
+* **Bias*  it is the diff between the predicted value and the actuak value on the training set. The more felxible model will try to reduce this value. While more linear function will have lower bias
+
+* Bias can be though of a training error
+
+_In general the more flexible model will have low bias but high variance_
+
+_the linear models will have low variance but high bias_
+
+Normally we will want to have models with _low variance and low bias_
+
+
+ 
