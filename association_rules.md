@@ -72,7 +72,7 @@ Given a set of transactions T, find all the rules having **support ≥ minsup an
 
 
 
-In association analysis, a collection of zero or more items is termed an **itemset**
+In association analysis, a collection of zero or more items is termed as **itemset**
 If an itemset contains k items, it is called a k-itemset. For instance, {Beer, Diapers, Milk} is an example of a 3-itemset.
 
 
@@ -132,6 +132,11 @@ Antecendent => consequent : this is the structure of the rule
 if {bcd} −→ {a} is low then
 All the rules containing item a in its consequent, including {cd} −→ {ab}, {bd} −→ {ac}, {bc} −→ {ad}, and {d} −→ {abc} can be discarded.
 
+This can also be writtn as  (From MLIA)
+if {bcd}--> {a} is low in confidence 
+then all the subset of the left hand side will also be low in confidence
+{bc}->{ad}, {b}-->{cda},{c}-->{bda},{d}-->{bca},{cd} −→ {ab}, {bd} −→ {ac}
+
 * Confidence is non‐increasing as number of items in rule consequent increases
  
 c(ABC --> D) >= c(AB --> CD) >= c(A --> BCD)
@@ -161,3 +166,41 @@ On the other hand, the rule {Diapers} −→ {Beer} is interesting because the r
 
 An objective measure is a data-driven approach for evaluating the quality of association patterns. It is domain-independent and requires minimal in- put from the users, other than to specify a threshold for filtering low-quality patterns
 
+
+
+## Lift
+(from http://analyticstrainings.com/?p=151)
+
+A lift value **greater than 1 indicates that X and Y appear more often together than expected** ; this means that the occurrence of X has a positive effect on the occurrence of Y or that X is positively correlated with Y.
+
+A lift **smaller than 1 indicates that X and Y appear less often together than expected**, this means that the occurrence of X has a negative effect on the occurrence of Y or that X is negatively correlated with Y
+
+A lift value near 1 indicates that X and Y appear almost as often together as expected; this means that the occurrence of X has almost no effect on the occurrence of Y or that X and Y have Zero Correlation.
+
+
+
+
+
+**We are looking for the rules where the lift is > 1**
+
+
+## How to interprest the rules
+
+p --> Q has 
+* support % =3.61   ...this implies P & Q occurs in 3.61% of the transactions
+* confidence % = 88.91 ... this implaies the probabily of finding Q in the transaction in which P is also present is 89% ( this is a conditional prob kind of sentence)
+* lift=19.41
+This means that probability of finding Q in the transactions containing P increases 19 times (this is a correlation kind of statement))
+
+
+
+
+## Possible Recommendations for X=>Y Rule (Where X and Y are 2 separate Products and have high support, high confidence and high positive lift > 1)
+
+1. Put X and Y Closer in the Store
+2. Package X with Y
+3. Package X and Y with a poorly selling item
+4. Give Discount on only one of X and Y
+5. Increase the Price of X and lower the price of Y (or vice versa)
+6. Advertise only one of X and Y i.e. do not advertise X and Y together
+Example: If X was a toy and Y a form of sweet, then offering sweets in the form of toy X could also be a good option.
