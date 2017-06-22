@@ -148,6 +148,16 @@ c(ABC --> D) >= c(AB --> CD) >= c(A --> BCD)
 TO BE FILLED
 
 
+## Finding minimal rules
+
+Basically our problem is to reduce the number of rules. Even after the confidence pruning you will have a large number of rules.
+
+In order to reduce the number of rules one of the way is to find **maximal frequent itemsets**, which is defined as frequent itemsets which are not proper subsets of any other frequent items. (check the arules book). They are the ones which will connect to infrequent itemsets. (basically there children can only be infrequent nodes).. but the problem is that this method will loose on the support value
+
+**frequent closed itemsets** this is another approach to reduce the number of mined rules. This approach will also keep the support information intact
+
+**Lift** is often used as the **practical** way to reduce the number of rules.
+
 
 ### Objective measures of rule interest
 1. Support P(A,B)
@@ -188,9 +198,24 @@ A lift value near 1 indicates that X and Y appear almost as often together as ex
 
 p --> Q has 
 * support % =3.61   ...this implies P & Q occurs in 3.61% of the transactions
-* confidence % = 88.91 ... this implaies the probabily of finding Q in the transaction in which P is also present is 89% ( this is a conditional prob kind of sentence)
+* confidence % = 88.91 ... this implaies the probabily of finding Q in the transaction in which P is also present is 89% ( this is a conditional prob kind of sentence)..
+Also we can say that the rule p-->Q is correct atleast 89% of time
 * lift=19.41
 This means that probability of finding Q in the transactions containing P increases 19 times (this is a correlation kind of statement))
+
+
+
+## Finding redundant rules (http://blog.revolutionanalytics.com/2015/04/association-rules-and-market-basket-analysis-with-r.html)
+two rules
+
+{a, b}-->{d} ..sub rule
+{a,b,c}-->{d}  ..superrule
+
+You can remove the superrule (containing more variables)
+if superrule has a lower or same lift as the sub rule
+
+which means that we are not adding anything to the correlation by adding more paramteters so remove that rule
+but if the lift is higher than the subrule then you should have both the rules
 
 
 
@@ -204,3 +229,12 @@ This means that probability of finding Q in the transactions containing P increa
 5. Increase the Price of X and lower the price of Y (or vice versa)
 6. Advertise only one of X and Y i.e. do not advertise X and Y together
 Example: If X was a toy and Y a form of sweet, then offering sweets in the form of toy X could also be a good option.
+
+
+
+## Examples
+1. http://www.rdatamining.com/examples/association-rules
+2. https://blog.exploratory.io/introduction-to-association-rules-market-basket-analysis-in-r-7a0dd900a3e0
+3. https://www.youtube.com/watch?v=Gy_nqzJMNrI (grocery example)
+4. Good link to understand how to filter out the rules of choice https://www.youtube.com/watch?v=91CmrpD-4Fw  .cosmetoic data
+5. https://www.safaribooksonline.com/library/view/r-for-data/9781784390815/ch09s08.html..chapter gives good example for using the arules
