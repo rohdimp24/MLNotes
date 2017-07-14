@@ -44,5 +44,57 @@ plot(model3)
 
 library(MASS)
 library(ISLR)
+data(Boston)
+names(Boston)
+
+plot(Boston$zn,Boston$crim)
+
+attach(Boston)
+
+#first model
+lm.fit=lm(medv~lstat ,data=Boston)
+summary(lm.fit)
+
+confint(lm.fit)
+
+predict(lm.fit,data.frame(lstat=(c(5,10,15))),interval="prediction")
 
 
+plot(lstat ,medv,pch=20)
+abline(lm.fit,col="red",lwd=3)
+
+
+
+par(mfrow=c(2,2))
+plot(lm.fit)
+#these are the outliers this is basically the sqrt(standarised residuals)
+which(rstudent(lm.fit)>3)
+
+#fitted.values(model) : will give the predicted values of the model
+
+plot(fitted.values(lm.fit),rstudent(lm.fit))
+
+
+which.max(hatvalues(lm.fit))
+
+
+lm.fit2=lm(medv~lstat+age,data=Boston)
+summary(lm.fit2)
+
+lm.fit3=lm(medv~.,data=Boston)
+summary(lm.fit3)
+
+cor(Boston)
+
+
+lm.fit4=lm(medv~.-indus-age,data=Boston)
+summary(lm.fit4)
+plot(lm.fit4)
+
+lm.fit5=lm(medv~lstat+I(lstat^2),data=Boston)
+summary(lm.fit5)
+
+
+anova(lm.fit,lm.fit5)
+
+plot(lm.fit5)
