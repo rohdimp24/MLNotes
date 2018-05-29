@@ -3,11 +3,16 @@
 (These notes are from EDX course, stanford , udacity, university of washington)
 * The baseline model is the one that will always give the same value irrespective of the input. One of the baseline could be y=mean(X)
 
-* The **training model** Multiple R2 will alsways increase or remain same if we increase the number of variables. It can never be -ve and the model cannot do worse than the baseline (mean)
+Y(hat) is the estimated value of actual Y. The estimation has been done based on the data.
+We try to reduce the error between the actual value of Y and the estimated value of Y
+
+* The **training model** Multiple R2 will alsways increase or remain same if we increase the number of variables. It can never be -ve and the model cannot do worse than the baseline (mean) but the Adjusted R2 will decrease if the variable does not make sense. So we should take into account the adjusted R2
 
 * The **testing model** Multiple R2 can be in negative as it can do worse on the unknown data
 
 * you should check if the variables are **multicolinear**...also you should remove the variable one at a time and see the effect as they are being insignificant together but may be significant independently
+
+* **overfitting** when you have high R^2 value on the training while low R^2 on the test data. If we are using lot of variables then chances of overfitting is high
 
 * For the **correlation** to be of concern the value should typically be higher than 0.7 or less than -0.7
 * in R you get the summary of the various coefficients value. You essentially get the following
@@ -18,6 +23,13 @@ AGST         0.6072093  0.0987022   6.152  5.2e-06 ***
 HarvestRain -0.0039715  0.0008538  -4.652 0.000154 ***
 WinterRain   0.0010755  0.0005073   2.120 0.046694 *  
 Age          0.0239308  0.0080969   2.956 0.007819 ** 
+
+
+
+The std.Error determines how much the varaiable value will vary from the estimated value
+The t-value =estimate/std.error. We are looking for large t-values as it means that the std.error is less and hence the variatuion from teh estimated value  is low
+
+The actual coefficient lies in the interval (coeff(estimated)-2*SE,coeff(estimated)+2*SE).The coeff that we get in the lm() is the estimated coeff and may not be equal to the actual but the confidence interval will tell us that the actual value lies in this interval
 
 The coefficient values are estimated. We can determine the confidence interval of what should be the true estimates
 (coeff+t-value at .95*SE,coeff-t-value at .95*SE)
@@ -33,7 +45,7 @@ Radio+/- 1.98*SE when N=100
 
 
 
-AGST will lie in between (0.60+2*0.098,0.60-2*0.098)
+AGST will lie in between (0.60+2*0.098,0.60-2*0.098) or between (0.796,0.404) in 95% cases
 
 * If the Y and X are not related then the coefficient of X will be 0
 
@@ -41,7 +53,7 @@ Y=0*X+bo
 we can determine if the relationship is there or not using the hypotheis testsing
 
 * The way to read the meaning of the line in summary is 
-pvalue detrmines the probability of accepting the Null hypothesis. the Null is that the coefficient has no effect on Y. 
+pvalue detrmines the probability of accepting the Null hypothesis. the **Null is that the coefficient has no effect on Y**. 
 So if the p value is very small < 0.05 it means it is very unlikely that the Null is true and hence we cannot avoid using the coefficient
 
 * Calculating the CI for the coefficient will give the range of variation that this coefficient can bring on the dependent Y. (0.42,0.53) will tell that for 95% times the value will be in this range and the effect will be 0.42 to 0.53 times X
@@ -86,6 +98,10 @@ An R2 statistic that is close to 1 indicates that a large proportion of the vari
 
 * **Variable Selection** :If adding a parameter in the liner regression equation increases the R2 very slightly then you can drop that paramter. However if the increase is large then we should include this paramter in the equation
 
+* **time series analysis** in this case we are trying to predict the dependent variable using the values of 
+the past depenedent variable. so can we predict the value of price this week by using the data from past weeks
+This is given in the FluTrends excercise of unit2 analytical edge
+
 * F-statistics tell if any predictors has an effect on Y. A large value of F at a significant p value is what we are interested in. In other words it means that the atleast one of the coefficients CI doesnot contain 0 (it will always have some effect on the regression equation)
 
 * **why F-statistics is important?**
@@ -108,3 +124,12 @@ In case of multivariate the response varaibles can also be many
 
 
 * ?how the hatvalues() works?
+
+
+Parametric Model:
+In this case we fistrt assume that the function f is of the form 
+f=b0+b1x1+b2x2...
+and then we try to find out the values of the paramters b0,b1...bn
+The good part is that we just have to find out the values of the finite number of paramters by assuming an equation. The equation may be different from the actual funcion that should fit but thats OK.
+In case of non-paramteric way we will have to figure out the equation of the function itself which is much difficult
+ 
